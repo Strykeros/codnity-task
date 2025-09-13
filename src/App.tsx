@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Header from './components/Header'
 import './App.css'
 import '@fontsource/roboto/300.css';

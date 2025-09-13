@@ -8,11 +8,14 @@ import {
   Menu,
   MenuList,
   MenuItem,
+  ThemeProvider, createTheme, CssBaseline
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { useState, type MouseEvent } from "react";
 
-const menuItemTexts = ["Home", "Blog", "About us", "Contact"];
+const theme = createTheme();
+const menuItemTexts: string[] = ["Home", "Blog", "About us", "Contact"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -35,7 +38,7 @@ const Header = () => {
           sx={{ color: "white", display: { xs: "flex", md: "none" } }}
           onClick={handleOpenNavMenu}
         >
-          <MenuIcon />
+            {Boolean(anchorElNav) ? <CloseIcon/> : <MenuIcon />}
         </IconButton>
         <Menu
           open={Boolean(anchorElNav)}
