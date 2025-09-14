@@ -16,7 +16,7 @@ const Footer = () => {
 
     return(
         <>
-        <AppBar component="footer" position="absolute" sx={{ bgcolor: "green", color: "white", height: "100px", top: "100vh"}}>
+        <AppBar component="footer" position="absolute" sx={{ bgcolor: "#4B4B4C", color: "white", height: "50px", top: "100vh"}}>
             <Toolbar  sx={{display: {xs: 'flex', justifyContent: 'space-between'}}}>
 
             </Toolbar>

@@ -8,13 +8,17 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  ThemeProvider, createTheme
+  ThemeProvider, createTheme,
+  responsiveFontSizes
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState, type MouseEvent } from "react";
 
-const theme = createTheme();
+let headerTheme = createTheme({
+  
+});
+headerTheme = responsiveFontSizes(headerTheme);
 const menuItemTexts: string[] = ["Home", "Blog", "About us", "Contact"];
 
 const Header = () => {
@@ -26,11 +30,11 @@ const Header = () => {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppBar position="fixed" sx={{ bgcolor: "green", color: "white" }}>
+    <ThemeProvider theme={headerTheme}>
+      <AppBar position="fixed" sx={{ bgcolor: "#4B4B4C", color: "white" }}>
         <Toolbar  sx={{display: {xs: 'flex', justifyContent: 'space-between'}}}>
           <Typography variant="h4">
-            Codnity test
+            SpaceX statistics
           </Typography>
           <IconButton
             size="large"
