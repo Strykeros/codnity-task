@@ -8,7 +8,7 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  ThemeProvider, createTheme, CssBaseline
+  ThemeProvider, createTheme
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,49 +26,52 @@ const Header = () => {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
-    <AppBar position="fixed" sx={{ bgcolor: "green", color: "white" }}>
-      <Toolbar  sx={{display: {xs: 'flex', justifyContent: 'space-between'}}}>
-        <Typography variant="h4">
-          Codnity test
-        </Typography>
-        <IconButton
-          size="large"
-          edge="end"
-          aria-label="menu"
-          sx={{ color: "white", display: { xs: "flex", md: "none" } }}
-          onClick={handleOpenNavMenu}
-        >
-            {Boolean(anchorElNav) ? <CloseIcon/> : <MenuIcon />}
-        </IconButton>
-        <Menu
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
-          sx={{ display: { xs: "flex", md: "none" } }}
-          anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-        >
-          <MenuList>
-            {menuItemTexts.map((text) => (
-              <MenuItem sx={{ color: "inherit" }}>{text}</MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
+    <ThemeProvider theme={theme}>
+      <AppBar position="fixed" sx={{ bgcolor: "green", color: "white" }}>
+        <Toolbar  sx={{display: {xs: 'flex', justifyContent: 'space-between'}}}>
+          <Typography variant="h4">
+            Codnity test
+          </Typography>
+          <IconButton
+            size="large"
+            edge="end"
+            aria-label="menu"
+            sx={{ color: "white", display: { xs: "flex", md: "none" } }}
+            onClick={handleOpenNavMenu}
+          >
+              {Boolean(anchorElNav) ? <CloseIcon/> : <MenuIcon />}
+          </IconButton>
+          <Menu
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{ display: { xs: "flex", md: "none" } }}
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            <MenuList>
+              {menuItemTexts.map((text) => (
+                <MenuItem sx={{ color: "inherit" }}>{text}</MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
 
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          {menuItemTexts.map((text) => (
-            <Button sx={{ color: "inherit" }}>{text}</Button>
-          ))}
-        </Box>
-      </Toolbar>
-    </AppBar>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            {menuItemTexts.map((text) => (
+              <Button sx={{ color: "inherit" }}>{text}</Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>      
+    </ThemeProvider>
+
   );
 };
 
