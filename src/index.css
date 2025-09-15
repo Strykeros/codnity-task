@@ -28,7 +28,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #28282B;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) -40%, rgba(0, 0, 0, 1) 100%), 
+    url("https://cdn.wccftech.com/wp-content/uploads/2024/11/SPACEX-FALCON-9-NOVEMBER-2024-scaled.jpeg");
+    background-position:50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 h1 {

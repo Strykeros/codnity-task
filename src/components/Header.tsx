@@ -8,18 +8,41 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  ThemeProvider, createTheme,
-  responsiveFontSizes
+  ThemeProvider,
+  createTheme,
+  responsiveFontSizes,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState, type MouseEvent } from "react";
+import { Link } from "react-router-dom";
 
-let headerTheme = createTheme({
-  
-});
+let headerTheme = createTheme();
+
+const headerStyle = {
+  Header: {
+    background: "rgba(0, 0, 0, 0.6)",
+    borderRadius: "0",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(0)",
+    WebkitBackdropFilter: "blur(0)",
+  },
+  HeaderTitle: {
+    color: "white"
+  }
+};
+
 headerTheme = responsiveFontSizes(headerTheme);
-const menuItemTexts: string[] = ["Home", "Blog", "About us", "Contact"];
+interface MenuItem {
+  text: string;
+  link: string;
+}
+
+const menuItems: MenuItem[] = [
+  { text: "Home", link: "/" },
+  { text: "About", link: "/about" },
+  { text: "Contact", link: "/contact" },
+];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -31,11 +54,13 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={headerTheme}>
-      <AppBar position="fixed" sx={{ bgcolor: "#4B4B4C", color: "white" }}>
-        <Toolbar  sx={{display: {xs: 'flex', justifyContent: 'space-between'}}}>
-          <Typography variant="h4">
-            SpaceX statistics
-          </Typography>
+      <AppBar position="fixed" sx={headerStyle.Header}>
+        <Toolbar
+          sx={{ display: { xs: "flex", justifyContent: "space-between" } }}
+        >
+          <Link to={menuItems[0].link}>
+            <Typography variant="h4" sx={headerStyle.HeaderTitle}>SpaceX statistics</Typography>            
+          </Link>
           <IconButton
             size="large"
             edge="end"
@@ -43,7 +68,7 @@ const Header = () => {
             sx={{ color: "white", display: { xs: "flex", md: "none" } }}
             onClick={handleOpenNavMenu}
           >
-              {Boolean(anchorElNav) ? <CloseIcon/> : <MenuIcon />}
+            {Boolean(anchorElNav) ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
           <Menu
             open={Boolean(anchorElNav)}
@@ -61,21 +86,24 @@ const Header = () => {
             }}
           >
             <MenuList>
-              {menuItemTexts.map((text) => (
-                <MenuItem sx={{ color: "inherit" }}>{text}</MenuItem>
+              {menuItems.map((item) => (
+                <MenuItem sx={{ color: "inherit" }}>{item.text}</MenuItem>
               ))}
             </MenuList>
           </Menu>
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {menuItemTexts.map((text) => (
-              <Button sx={{ color: "inherit" }}>{text}</Button>
-            ))}
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              {menuItems.map((item, index) => (
+                <Link key={index} to={item.link}>
+                  <Button sx={{ color: "white" }}>{item.text}</Button>
+                </Link>
+              ))}
+            </Box>
           </Box>
         </Toolbar>
-      </AppBar>      
+      </AppBar>
     </ThemeProvider>
-
   );
 };
 

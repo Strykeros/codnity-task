@@ -1,20 +1,14 @@
-import Header from './components/Header'
-import './App.css'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import Footer from './components/Footer';
-
-
-const App = () => {
-
-  return (
-    <>
-      <Header></Header>
-      <Footer></Footer>
-    </>
-  )
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Index from './pages/IndexPage';
+import Contact from './pages/ContactPage';
+function App() {
+ return (
+    <Router>
+        <Routes>
+          <Route path="/" element={<Index/>} />
+          <Route path="/contact" element={<Contact/>} />
+        </Routes>
+    </Router>
+ );
 }
-
-export default App
+export default App;
