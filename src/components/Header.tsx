@@ -28,8 +28,8 @@ const headerStyle = {
     WebkitBackdropFilter: "blur(0)",
   },
   HeaderTitle: {
-    color: "white"
-  }
+    color: "white",
+  },
 };
 
 headerTheme = responsiveFontSizes(headerTheme);
@@ -59,7 +59,9 @@ const Header = () => {
           sx={{ display: { xs: "flex", justifyContent: "space-between" } }}
         >
           <Link to={menuItems[0].link}>
-            <Typography variant="h4" sx={headerStyle.HeaderTitle}>SpaceX statistics</Typography>            
+            <Typography variant="h4" sx={headerStyle.HeaderTitle}>
+              SpaceX statistics
+            </Typography>
           </Link>
           <IconButton
             size="large"
@@ -70,10 +72,17 @@ const Header = () => {
           >
             {Boolean(anchorElNav) ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
+
           <Menu
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
-            sx={{ display: { xs: "flex", md: "none" } }}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              "& .MuiPaper-root": {
+                backgroundColor: "black",
+                width: "100%",
+              },
+            }}
             anchorEl={anchorElNav}
             anchorOrigin={{
               vertical: "bottom",
@@ -85,9 +94,26 @@ const Header = () => {
               horizontal: "left",
             }}
           >
-            <MenuList>
-              {menuItems.map((item) => (
-                <MenuItem sx={{ color: "inherit" }}>{item.text}</MenuItem>
+            <MenuList
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                padding: "0",
+                margin: "0",
+              }}
+            >
+              {menuItems.map((item, index) => (
+                <Link key={index} to={item.link} >
+                  <MenuItem
+                    sx={{
+                      color: "white",
+                      backgroundColor: "inherit",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.text}
+                  </MenuItem>
+                </Link>
               ))}
             </MenuList>
           </Menu>

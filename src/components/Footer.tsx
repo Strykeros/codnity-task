@@ -78,7 +78,7 @@ const Footer = () => {
               underline="hover"
               sx={{ color: "white" }}
             >
-              Terms of Service
+              About
             </Link>
           </Grid>
           
