@@ -12,8 +12,10 @@ const glassStyle = {
         WebkitBackdropFilter: "blur(6.5px)",
         color: "black",
         padding: "20px",
-        /*height: "100%",
-        minHeight: '200px',*/
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        alignItems: "center"
     }
 }
 
@@ -21,16 +23,17 @@ interface GlassCardProps {
     children: React.ReactNode;
     onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
     sx?: SxProps<Theme>;
+    cardContentSx?: SxProps<Theme>;
     padding?: number | string;
     elevation?: number;
     hover?: boolean;
     fullHeight?: boolean;
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({ onClick, children, sx = {}, ...props }) => {
+const GlassCard: React.FC<GlassCardProps> = ({ onClick, children, sx = {}, cardContentSx = {}, ...props }) => {
     return (
-        <Card sx={glassStyle.Glass} onClick={onClick} {...props}>
-            <CardContent>
+        <Card sx={{...glassStyle.Glass, ...sx}} onClick={onClick} {...props}>
+            <CardContent sx={{ flexGrow: 1, ...cardContentSx }}>
                 {children}
             </CardContent>
         </Card>

@@ -2,9 +2,10 @@ import {
   AppBar,
   IconButton,
   Typography,
-  Link,
   Grid,
+  Button,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import { GitHub, Twitter, LinkedIn, Email } from "@mui/icons-material";
 
 const footerStyle = {
@@ -16,10 +17,14 @@ const footerStyle = {
     WebkitBackdropFilter: "blur(16px)",
     height: { xs: "auto", lg: "100px" },
     minHeight: { xs: "150px", lg: "100px" },
+    /*bottom: "0",
     top: "100vh",
+    position: "fixed", */
     color: "white",
-    position: "absolute",
+
     padding: { xs: 2, lg: 0 },
+    marginTop: 0,
+    position: "static",
   },
   toolbar: {
     justifyContent: { xs: "center", md: "center" },
@@ -31,14 +36,22 @@ const footerStyle = {
   },
 };
 
+const menuItems: {
+  text: string;
+  link: string;
+}[] = [
+    { text: "About", link: "/about" },
+    { text: "Contact", link: "/contact" },
+  ];
+
 const Footer = () => {
   return (
     <AppBar component="footer" sx={footerStyle.footer}>
       <Grid container sx={footerStyle.toolbar}>
-        
-        <Grid 
-          size={{ md: 4, xs: 12 }} 
-          sx={{ 
+
+        <Grid
+          size={{ md: 4, xs: 12 }}
+          sx={{
             textAlign: "center",
             order: { xs: 1, lg: 0 }
           }}
@@ -60,45 +73,20 @@ const Footer = () => {
             gap: { xs: 1, lg: 0 }
           }}
         >
-          <Grid size={{ md: 4, xs: 12 }}>
-            <Link
-              href="#"
-              color="inherit"
-              underline="hover"
-              sx={{ color: "white" }}
-            >
-              Privacy Policy
+          {menuItems.map((item, index) => (
+            <Grid size={{ md: 6, xs: 12 }}>
+            <Link key={index} to={item.link}>
+              <Button sx={{ color: "white" }}>{item.text}</Button>
             </Link>
-          </Grid>
-
-          <Grid size={{ md: 4, xs: 12 }}>
-            <Link
-              href="#"
-              color="inherit"
-              underline="hover"
-              sx={{ color: "white" }}
-            >
-              About
-            </Link>
-          </Grid>
-          
-          <Grid size={{ md: 4, xs: 12 }}>
-            <Link
-              href="#"
-              color="inherit"
-              underline="hover"
-              sx={{ color: "white" }}
-            >
-              Contact
-            </Link>
-          </Grid>
+            </Grid>
+          ))}
         </Grid>
 
         <Grid
           size={{ md: 4, xs: 12 }}
-          sx={{ 
-            display: "flex", 
-            justifyContent: "center", 
+          sx={{
+            display: "flex",
+            justifyContent: "center",
             gap: 1,
             order: { xs: 3, lg: 3 }
           }}
@@ -135,7 +123,7 @@ const Footer = () => {
             <Email />
           </IconButton>
         </Grid>
-        
+
       </Grid>
     </AppBar>
   );
