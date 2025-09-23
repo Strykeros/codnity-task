@@ -17,9 +17,6 @@ const footerStyle = {
     WebkitBackdropFilter: "blur(16px)",
     height: { xs: "auto", lg: "100px" },
     minHeight: { xs: "150px", lg: "100px" },
-    /*bottom: "0",
-    top: "100vh",
-    position: "fixed", */
     color: "white",
 
     padding: { xs: 2, lg: 0 },

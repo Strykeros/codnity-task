@@ -18,8 +18,7 @@ const StarlinkDashboard: React.FC = () => {
     const fetchData = async (): Promise<void> => {
       try {
         setLoading(true);
-        
-        // Fetch Starlink satellites and launches in parallel
+
         const [satellitesResponse, launchesResponse] = await Promise.all([
           fetch('https://api.spacexdata.com/v4/starlink'),
           fetch('https://api.spacexdata.com/v4/launches')
@@ -108,7 +107,7 @@ const StarlinkDashboard: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', padding: { xs: 1, sm: 2 } }}>
-      <Box sx={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+      <Box sx={{ margin: '0 auto', width: '100%' }}>
         <DashboardHeader />
         
         <StatisticsRow 
